@@ -43,14 +43,55 @@ describe('Checking the main functionality', function () {
             expect(age1).toEqual(data.ageM5);
         });
 
-        it('TC-042 Age accepts upper board integer', function () {
+        it('TC-041  doesnt accept negative integer', function () {
             browser.url('');
-            const input = $(sel.age).setValue(data.ageM7);
-            browser.pause(10000);
+            const input = $(sel.age).setValue(data.ageM11);
+            browser.pause(1000);
             const error = $(sel.ageError).isExisting();
             expect(error).toEqual(true);
         });
 
+        it('TC-042   doesnt accept fractional number', function () {
+            browser.url('');
+            const input = $(sel.age).setValue(data.ageM12);
+            browser.pause(1000);
+            const error = $(sel.ageError).isExisting();
+            expect(error).toEqual(true);
+        });
+
+        it('TC-043  doesnt accept integer greater than 12 symbols', function () {
+            browser.url('');
+            const input = $(sel.age).setValue(data.ageM7);
+            browser.pause(1000);
+            const error = $(sel.ageError).isExisting();
+            expect(error).toEqual(true);
+        });
+
+        it('TC-044  spinner doesnt let go over 12 symbols', function () {
+            browser.url('');
+            const input = $(sel.age).setValue(data.ageM8);
+            $$(sel.ageArrow)[0].click();
+            browser.pause(1000);
+            const error = $(sel.ageError).isExisting();
+            expect(error).toEqual(true);
+        });
+
+        it('TC-045  spinner doesnt allow to go lower than 1 in age', function () {
+            browser.url('');
+            const input = $(sel.age).setValue(data.ageM9);
+            $$(sel.ageArrow)[1].click();
+            browser.pause(1000);
+            const error = $(sel.ageError).isExisting();
+            expect(error).toEqual(true);
+        });
+
+        it('TC-046  age field doesnt accept 0', function () {
+            browser.url('');
+            const input = $(sel.age).setValue(data.ageM10);
+            browser.pause(1000);
+            const error = $(sel.ageError).isExisting();
+            expect(error).toEqual(true);
+        });
 
 });
 
