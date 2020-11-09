@@ -32,6 +32,14 @@ describe('Inputs', function () {
             expect(label).toEqual(true);
         });
     });
-    describe('Placeholders are correct', function () {
+
+        describe('Placeholders are correct', function () {
+
+        it('TC-031Y Name', function () {
+            const placeholder = $(sel.name).getAttribute('placeholder');
+            expect(placeholder).toEqual(exp.placeholderName);
+        });
     });
-})
+});
+
+
